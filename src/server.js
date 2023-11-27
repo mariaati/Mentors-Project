@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 5001;
-
+const routes= require("./routes");
 /*
 CORS (Cross-Origin Resource Sharing) is a browser security feature that restricts
 cross-origin HTTP requests with other servers and specifies which domains access your resources.
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 // enables the server to serve the client app without running it
 app.use(express.static(path.join(__dirname, '../client/build')));
-
+app.use("/" , routes);
 app.get('/api/helloworld', (req, res) => {
   res.send('Hello World');
 });
@@ -29,5 +29,3 @@ app.get('/*', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
-
-/*hiii/
