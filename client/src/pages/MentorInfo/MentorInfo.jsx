@@ -1,62 +1,93 @@
-import React from "react";
-import {
-  MDBIcon,
-  MDBCol,
-  MDBRow,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBBtn,
-} from 'mdb-react-ui-kit';
+import React, { useEffect, useState } from "react";
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
+import { FaLinkedin, FaPhoneSquare } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import { IoLogoWhatsapp } from 'react-icons/io';
+import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
+import axios from "axios";
+import { Link, useParams } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
+import LogoImage from '../../images/logoqueen.jpg';
+import './MentorInfo.css';
 
 
-export default function MentorInfo({id}){
-
- 
-
-
+export default function MentorInfo() {
+  const port = process.env.PORT || 5001;
+  let { id } = useParams();
   document.body.style.backgroundColor = 'pink';
+
+  const [item, setItem] = useState(null);
+  const [showMessageInput, setShowMessageInput] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleShowMessageInput = () => setShowMessageInput(true);
+  const handleSendMessage = () => {
+    // Add logic to send the message
+    console.log('Message sent:', message);
+    // Close the message input after sending
+    setShowMessageInput(false);
+  };
+
+  useEffect(() => {
+    axios.get(`http://localhost:${port}/Mentors/${id}`)
+      .then(response => setItem(response.data))
+      .catch(error => console.error(`There was an error retrieving the message: ${error}`))
+  }, [])
 
   return (
     <section className="d-flex justify-content-center align-items-center">
-      <MDBRow>
+      
+      <MDBRow style={{ marginLeft: '400px', position: 'relative' }}>
         <MDBCol lg="6">
-          <MDBCard className="mb-4"style={{ marginTop: '40px' }}>
+          <MDBCard className="mb-4" style={{ marginTop: '50px',width:'500px',marginRight:'450px'}}>
             <MDBCardBody className="text-center">
-              <MDBCardImage
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                alt="avatar"
+            
+            <Link to="/Mentors" className="back-link">
+  <div className="back-icon-container">
+    <IoArrowBackCircleOutline className="back-button" />
+  </div>
+</Link>
+              <MDBCardImage 
+                  src={item?.image ? require(`../../images/${item.image}`) : ''}
                 className="rounded-circle"
-                style={{ width: '900px', height: '450px', objectFit: 'cover', }}
+                style={{ width: 'px', height: '450px', objectFit: 'cover' }}
                 fluid
               />
-              <p  className="text-muted mb-2 fs-5">Full Stack Developer</p> 
-             <p className="text-muted mb-2 fs-5">{}</p>
-              <p className="text-muted mb-4 fs-6">Bay Area, San Francisco, CA</p>
+              <p className="text-muted mb-2 fs-5">{item?.name}</p>
+              <p className="text-muted mb-4 fs-6">{item?.profession}</p>
               <div className="d-flex justify-content-center mb-2">
-                <MDBBtn size="lg">Follow</MDBBtn>
-                <MDBBtn size="lg" outline className="ms-2">
+                <Button variant="outline-secondary" className="ms-2" onClick={handleShowMessageInput}>
                   Message
-                </MDBBtn>
+                </Button>
               </div>
+              {/* Message input section */}
+              {showMessageInput && (
+                <Form className="mt-3">
+                  <Form.Group controlId="messageForm">
+                    <Form.Label>Your Message</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Button variant="primary" onClick={handleSendMessage}>
+                    Send Message
+                  </Button>
+                </Form>
+              )}
+              {/* Icons section */}
+              <div className="d-flex justify-content-center mb-2">
+  <FaLinkedin className="linkedin icon" style={{ fontSize: '2em' }} />
+  <FaPhoneSquare className="phone icon" style={{ fontSize: '2em' }} />
+  <MdEmail className="email icon" style={{ fontSize: '2em' }} />
+  <IoLogoWhatsapp className="whatsapp icon" style={{ fontSize: '2em' }} />
+</div>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
       </MDBRow>
-      <div className="d-flex justify-content-start">
-        <a href="#!">
-          <MDBIcon fab icon="facebook me-3" size="lg" />
-        </a>
-        <a href="#!">
-          <MDBIcon fab icon="twitter me-3" size="lg" />
-        </a>
-        <a href="#!">
-          <MDBIcon fab icon="instagram me-3" size="lg" />
-        </a>
-      </div>
     </section>
-
-
-
   );
 }

@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5001;
 const data = require('./db.js');
+const { Console } = require('console');
 
 
 /*
@@ -19,7 +20,18 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.get('/Mentors', (req, res) => {
+
   res.send(data);
+});
+app.get(`/Mentors/:id`, (req, res) => {
+  const mentor = req.params.id;
+  //console.log(`Fetching data for mentor with id: ${mentorid}`);
+  console.log('hiii');
+  console.log(mentor);
+  let id = Number(mentor);
+
+console.log([id]);
+  res.send(data.getStudentById(id));
 });
 
 app.get('*', (req, res) => {

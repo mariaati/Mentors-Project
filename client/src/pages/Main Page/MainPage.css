@@ -1,0 +1,107 @@
+.centered-content {
+    text-align: center;
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect */
+.centered-content {
+    text-align: center;
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    padding: 20px; /* Add padding for better spacing */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect */
+.centered-content:hover {
+    background-color: #ff69b4;
+    transform: scale(1.05); /* Add a slight scale effect on hover */
+}
+
+.centered-content h1 {
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5em; /* Adjust font size */
+    margin-bottom: 10px; /* Add spacing below the heading */
+}
+
+.centered-content h3 {
+    color: #333;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5em; /* Adjust font size */
+}
+
+/* Add styles for the Link element if needed */
+.centered-content a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold; /* Make the link text bold */
+}
+
+/* Hover effect for the link */
+.centered-content a:hover {
+    text-decoration: underline; /* Underline the link on hover */
+}
+.custom-button {
+    display: flex;
+    background-color: #ff69b4; /* Pink background color */
+    color: #fff; /* White text color */
+    padding: 15px 30px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 18px; /* Adjust font size as needed */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for background color and scale */
+
+    /* Add any other styles you want */
+}
+
+/* Hover effect for the button */
+.custom-button:hover {
+    background-color: #d53e91; /* Darker pink on hover */
+    transform: scale(1.05); /* Add a slight scale effect on hover */
+}
+@keyframes fadeInImage {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to each image */
+.text-center .row .col img {
+    animation: fadeInImage 1s ease-out forwards;
+}

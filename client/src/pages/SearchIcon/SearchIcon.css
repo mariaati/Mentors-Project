@@ -4,15 +4,20 @@
   }
   
   .search-input {
+    
     padding: 8px;
     margin-right: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
     outline: none;
+    width: 300px;
+
+    
   }
   
   .heart-icon {
+    margin-left:10px;
     font-size: 24px;
     color: black; /* or any color you prefer */
     cursor: pointer;

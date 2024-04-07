@@ -17,15 +17,15 @@
 const students = [
     {
       id: 1,
-      name: "John Doe",
-      profession: "Software Engineer",
-      email: "john.doe@example.com",
+      name: "Yamama aghbarieh",
+      profession: "FrontEnd",
+      email: "yamama@example.com",
       location: "New York",
       image:"person1.svg",
     }  , 
 {  id: 2,
-    name: "lana ma",
-    profession: "Software Engineer",
+    name: "Lana Aboumokh",
+    profession: "JAVA",
     email: "lana5@example.com",
     location: "haifa",
     image:"person2.svg",
@@ -35,32 +35,32 @@ const students = [
 },
 {
     id: 3,
-    name: "maria atia",
-    profession: "Software Engineer",
+    name: "Maria Atia",
+    profession: "Full Stack",
     email: "maat@example.com",
     location: "haifa",
     image:"person3.svg",
 }
 ,{
     id: 4,
-    name: "maria atia",
-    profession: "Software Engineer",
+    name: "Maya Atwan",
+    profession: "Backend",
     email: "maat@example.com",
     location: "haifa",
     image:"person4.svg",
 }
 ,{
     id: 5,
-    name: "maria atia",
-    profession: "Software Engineer",
+    name: "Hidaya Baraky",
+    profession: "JAVA SCRIPT,HTML",
     email: "maat@example.com",
     location: "haifa",
     image:"person5.svg",
 }
 ,{
     id: 6,
-    name: "maria atia",
-    profession: "Software Engineer",
+    name: "Shirley Kulbak",
+    profession: "Frontend",
     email: "maat@example.com",
     location: "haifa",
     image:"person6.svg",
@@ -71,4 +71,11 @@ const students = [
 
 
 
-    module.exports=students;
+const getStudentById = (id) => {
+    return students.find(student => student.id === id);
+  };
+  
+  module.exports = {
+    students,
+    getStudentById,
+  };
